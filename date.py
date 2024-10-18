@@ -14,18 +14,18 @@ class BirthDate:
         self.month, self.day = today.month,today.day
     def get_friends_birthdate(self)->None:
         try:
-            data= read_csv("./birthday.csv")
+            data= read_csv("./birthdays.csv")
         except FileNotFoundError as e:
             print(f"Error! {e}")
         finally:
             try:
-                self.birth_dates = {row.name:[row.month, row.day] for index, row in data.iterrows()}
-            except KeyError as error:
+                self.birth_dates = {row['name']:[row.month, row.day] for index, row in data.iterrows()}
+            except (KeyError, UnboundLocalError) as error:
                 print(f"{error} ")
     def is_today_a_birthday(self)->None:
         for name, birthdate in self.birth_dates.items():
-            if birthdate[0] == self.month and birthdate[1] == self.day:
-                self.birthday_names.append(name)
+                if birthdate[0] == self.month and birthdate[1] == self.day:
+                    self.birthday_names.append(name)
 
 if __name__ == "__main__":
     birthdate = BirthDate()

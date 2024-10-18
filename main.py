@@ -1,7 +1,9 @@
 from date import BirthDate
 from letter import Letter
 from send_mail import SendMail
-def main():
+def main()->None:
+    """_Create SendMail, Letter and BirthDate objects and run their methods_
+    """
     sendmail = SendMail()
     letter = Letter()
     birthdate = BirthDate()

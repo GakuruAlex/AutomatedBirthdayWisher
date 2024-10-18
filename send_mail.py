@@ -12,9 +12,8 @@ class SendMail:
     def send_mail(self, message: str):
         connection = SMTP(host= self.host)
         connection.starttls()
-        connection.connect()
         connection.login(user= self.email, password= self.password)
-        connection.sendmail(from_addr= self.email, to_addrs= self.receiver_email , message= message)
+        connection.sendmail(from_addr= self.email, to_addrs= self.receiver_email , msg= message)
         connection.close()
     def get_details(self):
         self.email = os.getenv("GMAIL_ACC")

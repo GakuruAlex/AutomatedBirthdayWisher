@@ -1,8 +1,10 @@
 from random import randint
+
 class Letter:
     def __init__(self):
         self.letter = None
         self.get_letter()
+        self.format_letter()
     def get_letter(self)-> None:
         chosen = randint(1, 3)
         try:
@@ -11,7 +13,10 @@ class Letter:
         except FileNotFoundError as missing_file:
             print(f"Error {missing_file}")
     def replace_name(self, name: str)-> None:
-        self.letter[0]=self.letter[0].replace("[NAME]", name)
+        self.letter=self.letter.replace("[NAME]", name)
+    def format_letter(self):
+        new_letter = self.letter[:]
+        self.letter="".join(new_letter)
 
 if __name__ == "__main__":
     letter = Letter()
